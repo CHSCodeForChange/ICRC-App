@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import './form/page_one.dart';
 
 class Home extends StatelessWidget {
+  
 
-  void openAddPassMenu () {
-  }
   @override
   Widget build(BuildContext context) {
     return new Material(
-      color: Colors.lightBlue,
+      color: Colors.blueAccent,
 
       child: new Container(
         child: Column(
@@ -32,7 +32,18 @@ class Home extends StatelessWidget {
             ), 
             new Container(
               margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-              child: new RaisedButton()
+              child: new RaisedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context) => PageOne())
+                  );
+                },
+                color: Colors.white,
+                child: new Text (
+                  'Begin'
+                )
+              )
             )
           ],
         )
