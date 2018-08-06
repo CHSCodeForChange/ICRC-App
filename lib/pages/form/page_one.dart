@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../models/form_data.dart';
+
 // Define a Custom Form Widget
 class PageOne extends StatefulWidget {
   @override
@@ -24,6 +26,8 @@ class PageOneState extends State<PageOne> {
   final double formMarginHoriz = 10.0;
   final double formMarginVert = 5.0;
 
+  FormDataModel data = new FormDataModel();
+  
   bool isNumeric(String s) {
     if(s == null) {
       return false;
@@ -136,13 +140,10 @@ class PageOneState extends State<PageOne> {
               new Container(
                 margin: EdgeInsets.all(10.0),
                 child: new RaisedButton(
-                  onPressed: () {
-                    
+                  onPressed: () { 
                     if (_formKey.currentState.validate()) {
-                      print(firstname.text);
-                      print(lastname.text);
-                      print(email.text);
-                      print(number.text);
+                      data.setPageOneData(firstname.text, lastname.text,
+                          email.text, number.text);
                     }
                   },
                   color: Colors.white,

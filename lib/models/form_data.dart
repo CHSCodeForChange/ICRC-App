@@ -9,26 +9,7 @@ class FormDataModel {
   String address;
   String zipcode;
 
-  String description;  
-
-  String descriminator;  
-  String descrimPhonenumber;  
-
-  String descrimCity;  
-  String descrimState;  
-  String descrimAddress;  
-  String descrimZipcode;  
-
-  String descrimArea;
-  
-  String descrimDatetime;
-
-  List descrimTypes;
-
   bool signed;
-
-
-
 
   void setPageOneData(String firstname, String lastname, String email, String phonenumber) {
     this.firstname = firstname;
@@ -44,19 +25,15 @@ class FormDataModel {
     this.zipcode = zipcode;
   }
 
-
   Map<String, dynamic> toJson() =>
     {
-      'firstname': firstname,
-      'lastname': lastname,
+      'first_name': firstname,
+      'last_name': lastname,
       'email': email,
-      'phonenumber':phonenumber,
-
-      'city':city,
-      'state':state,
-      'address':address,
-      'zipcode':zipcode,
-
-
+      'phone_number': phonenumber,
+      'address': address,
+      'city': city,
+      'state': state,
+      'zip_code': zipcode,
     };
 }
