@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import './page_one.dart';
 import '../../models/form_data.dart';
 
 class PageTwo extends StatefulWidget {  
@@ -131,7 +132,25 @@ class PageTwoState extends State<PageTwo> {
                   },
                 )
               ),
-              
+
+              new Container(
+                margin: EdgeInsets.all(10.0),
+                child: new RaisedButton(
+                  onPressed: () {
+                    if (_formKey.currentState.validate()) {
+                      data.setPageTwoData(city.text, state.text,
+                          address.text, zipcode.text);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PageOne(data))
+                      );
+                    }
+                  },
+                  color: Colors.white,
+                  child: Text('Previous'),
+                )
+              ),
+
               new Container(
                 margin: EdgeInsets.all(10.0),
                 child: new RaisedButton(
@@ -139,8 +158,6 @@ class PageTwoState extends State<PageTwo> {
                     if (_formKey.currentState.validate()) {
                       data.setPageTwoData(city.text, state.text,
                           address.text, zipcode.text);
-                      print(data.zipcode);
-                      print(data.email);
                     }
                   },
                   color: Colors.white,

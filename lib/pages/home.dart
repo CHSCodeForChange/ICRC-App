@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
 import './form/page_one.dart';
+import '../models/form_data.dart';
 
 class Home extends StatelessWidget {
+  FormDataModel data = new FormDataModel();  
   
-
   @override
   Widget build(BuildContext context) {
     return new Material(
@@ -36,7 +38,7 @@ class Home extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context, 
-                    MaterialPageRoute(builder: (context) => PageOne())
+                    MaterialPageRoute(builder: (context) => PageOne(data))
                   );
                 },
                 color: Colors.white,

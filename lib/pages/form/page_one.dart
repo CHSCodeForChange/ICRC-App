@@ -6,8 +6,11 @@ import './page_two.dart';
 
 // Define a Custom Form Widget
 class PageOne extends StatefulWidget {
+  FormDataModel data;
+  PageOne(this.data);
+
   @override
-  PageOneState createState() => new PageOneState();
+  PageOneState createState() => new PageOneState(data);
 }
 
 // Define a corresponding State class. This class will hold the data related to 
@@ -27,7 +30,9 @@ class PageOneState extends State<PageOne> {
   final double formMarginHoriz = 10.0;
   final double formMarginVert = 5.0;
 
+  // constructor
   FormDataModel data = new FormDataModel();
+  PageOneState(this.data);
   
   bool isNumeric(String s) {
     if(s == null) {
