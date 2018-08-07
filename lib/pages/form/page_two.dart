@@ -2,32 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../models/form_data.dart';
-import './page_two.dart';
 
-// Define a Custom Form Widget
-class PageOne extends StatefulWidget {
+class PageTwo extends StatefulWidget {  
+  FormDataModel data;
+  PageTwo(this.data);
+  
   @override
-  PageOneState createState() => new PageOneState();
+  PageTwoState createState() => new PageTwoState(data);
 }
 
-// Define a corresponding State class. This class will hold the data related to 
-// the form.
-class PageOneState extends State<PageOne> {
-  // Create a global key that will uniquely identify the Form widget and allow
-  // us to validate the form
-  //
-  // Note: This is a `GlobalKey<FormState>`, not a GlobalKey<MyCustomFormState>! 
+class PageTwoState extends State<PageTwo> {
   final _formKey = GlobalKey<FormState>();
 
-  final firstname = TextEditingController();
-  final lastname = TextEditingController();
-  final email = TextEditingController();
-  final number = TextEditingController();
+  final city = TextEditingController();
+  final state = TextEditingController();
+  final address = TextEditingController();
+  final zipcode = TextEditingController();
 
   final double formMarginHoriz = 10.0;
   final double formMarginVert = 5.0;
-
-  FormDataModel data = new FormDataModel();
   
   bool isNumeric(String s) {
     if(s == null) {
@@ -36,6 +29,10 @@ class PageOneState extends State<PageOne> {
     return double.parse(s, (e) => null) != null;
   }
   
+  // constructor
+  FormDataModel data;
+  PageTwoState(this.data);
+
   @override
   Widget build(BuildContext context) {
     return new Material(
@@ -57,7 +54,7 @@ class PageOneState extends State<PageOne> {
               new Container(
                 margin: EdgeInsets.only(top:10.0, bottom: 30.0),
                 child: new Text(
-                  'Page One of Who Cares',
+                  'Page Two of Who Cares',
                   textAlign: TextAlign.center,
                   style: new TextStyle(fontSize: 15.0, color: Colors.white),
                 )
@@ -65,10 +62,10 @@ class PageOneState extends State<PageOne> {
               new Container(
                 margin: EdgeInsets.only(top: formMarginVert,  bottom: formMarginVert, left: formMarginHoriz, right: formMarginHoriz),
                 child: new TextFormField(
-                  controller: firstname,
+                  controller: city,
                   
                   decoration: new InputDecoration(
-                    labelText: "First Name",
+                    labelText: "City",
                     fillColor: Colors.white,
                     errorStyle: TextStyle(color: Colors.white),
                     filled: true,
@@ -83,9 +80,10 @@ class PageOneState extends State<PageOne> {
               new Container(
                 margin: EdgeInsets.only(top: formMarginVert,  bottom: formMarginVert, left: formMarginHoriz, right: formMarginHoriz),
                 child: new TextFormField(
-                  controller: lastname,
+                  controller: state,
+
                   decoration: new InputDecoration(
-                    labelText: "Last Name",
+                    labelText: "State",
                     fillColor: Colors.white,
                     errorStyle: TextStyle(color: Colors.white),
                     filled: true,
@@ -100,9 +98,9 @@ class PageOneState extends State<PageOne> {
               new Container(
                 margin: EdgeInsets.only(top: formMarginVert,  bottom: formMarginVert, left: formMarginHoriz, right: formMarginHoriz),
                 child: new TextFormField(
-                  controller: email,
+                  controller: address,
                   decoration: new InputDecoration(
-                    labelText: "Email",
+                    labelText: "Address",
                     fillColor: Colors.white,
                     errorStyle: TextStyle(color: Colors.white),
                     filled: true,
@@ -110,8 +108,6 @@ class PageOneState extends State<PageOne> {
                   validator: (value) {
                     if (value.isEmpty) {
                       return "Enter some text";
-                    } else if (!value.contains('@') || !value.contains('.')) {
-                      return "Not a valid email";
                     }
                   },
                 )
@@ -119,9 +115,9 @@ class PageOneState extends State<PageOne> {
               new Container(
                 margin: EdgeInsets.only(top: formMarginVert,  bottom: formMarginVert, left: formMarginHoriz, right: formMarginHoriz),
                 child: new TextFormField(
-                  controller: number,
+                  controller: zipcode,
                   decoration: new InputDecoration(
-                    labelText: "Phone Number",
+                    labelText: "Zip Code",
                     fillColor: Colors.white,
                     errorStyle: TextStyle(color: Colors.white),
                     filled: true,
@@ -131,8 +127,6 @@ class PageOneState extends State<PageOne> {
                       return "Enter some text";
                     } else if (!isNumeric(value)) {
                       return "Should only contain numbers";
-                    } else if (value.length != 10) {
-                      return "Should be 3 digit area code and 7 digit local number";
                     }
                   },
                 )
@@ -143,13 +137,11 @@ class PageOneState extends State<PageOne> {
                 child: new RaisedButton(
                   onPressed: () { 
                     if (_formKey.currentState.validate()) {
-                      data.setPageOneData(firstname.text, lastname.text,
-                          email.text, number.text);
+                      data.setPageTwoData(city.text, state.text,
+                          address.text, zipcode.text);
+                      print(data.zipcode);
+                      print(data.email);
                     }
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PageTwo(data))
-                    );
                   },
                   color: Colors.white,
                   child: Text('Next'),
