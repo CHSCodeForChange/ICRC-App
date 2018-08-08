@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import './page_one.dart';
+import '../../common/verify.dart';
 import '../../models/form_data.dart';
+import './page_one.dart';
 
 class PageTwo extends StatefulWidget {
   FormDataModel data;
@@ -22,13 +23,6 @@ class PageTwoState extends State<PageTwo> {
 
   final double formMarginHoriz = 10.0;
   final double formMarginVert = 5.0;
-
-  bool isNumeric(String s) {
-    if (s == null) {
-      return false;
-    }
-    return double.parse(s, (e) => null) != null;
-  }
 
   // constructor
   FormDataModel data;
@@ -97,6 +91,8 @@ class PageTwoState extends State<PageTwo> {
                           validator: (value) {
                             if (value.isEmpty) {
                               return "Enter some text";
+                            } else if (!isUSState(value)) {
+                              return "Enter a two-letter state abbreviation";
                             }
                           },
                         )),

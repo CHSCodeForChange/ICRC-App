@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../common/verify.dart';
 import '../../models/form_data.dart';
 import './page_two.dart';
 
@@ -33,13 +34,6 @@ class PageOneState extends State<PageOne> {
   // constructor
   FormDataModel data = new FormDataModel();
   PageOneState(this.data);
-
-  bool isNumeric(String s) {
-    if (s == null) {
-      return false;
-    }
-    return double.parse(s, (e) => null) != null;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,8 +118,7 @@ class PageOneState extends State<PageOne> {
                           validator: (value) {
                             if (value.isEmpty) {
                               return "Enter some text";
-                            } else if (!value.contains('@') ||
-                                !value.contains('.')) {
+                            } else if (!isEmail(value)) {
                               return "Not a valid email";
                             }
                           },
@@ -161,11 +154,11 @@ class PageOneState extends State<PageOne> {
                             if (_formKey.currentState.validate()) {
                               data.setPageOneData(firstname.text, lastname.text,
                                   email.text, number.text);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PageTwo(data)));
                             }
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PageTwo(data)));
                           },
                           color: Colors.white,
                           child: Text('Next'),
