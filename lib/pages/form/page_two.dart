@@ -142,14 +142,12 @@ class PageTwoState extends State<PageTwo> {
                         margin: EdgeInsets.all(10.0),
                         child: new RaisedButton(
                           onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              data.setPageTwoData(city.text, state.text,
-                                  address.text, zipcode.text);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PageOne(data)));
-                            }
+                            data.setPageTwoData(city.text, state.text,
+                                address.text, zipcode.text);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PageOne(data)));
                           },
                           color: Colors.white,
                           child: Text('Previous'),
