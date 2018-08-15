@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import '../../common/verify.dart';
 import '../../models/form_data.dart';
 import './page_two.dart';
+import './sec_page_two.dart';
 
 // Define a Custom Form Widget
 class SecPageOne extends StatefulWidget {
@@ -168,10 +169,10 @@ class SecPageOneState extends State<SecPageOne> {
                             if (_formKey.currentState.validate()) {
                               data.setSecPageOneData(firstname.text,
                                   lastname.text, email.text, number.text);
-                              /* Navigator.push(
+                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                  builder: (context) => PageTwo(data))); */
+                                  builder: (context) => SecPageTwo(data)));
                             }
                           },
                           color: Colors.white,
