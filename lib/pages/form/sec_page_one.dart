@@ -6,17 +6,17 @@ import '../../models/form_data.dart';
 import './page_two.dart';
 
 // Define a Custom Form Widget
-class PageOne extends StatefulWidget {
+class SecPageOne extends StatefulWidget {
   FormDataModel data;
-  PageOne(this.data);
+  SecPageOne(this.data);
 
   @override
-  PageOneState createState() => new PageOneState(data);
+  SecPageOneState createState() => new SecPageOneState(data);
 }
 
 // Define a corresponding State class. This class will hold the data related to
 // the form.
-class PageOneState extends State<PageOne> {
+class SecPageOneState extends State<SecPageOne> {
   // Create a global key that will uniquely identify the Form widget and allow
   // us to validate the form
   //
@@ -33,7 +33,7 @@ class PageOneState extends State<PageOne> {
 
   // constructor
   FormDataModel data = new FormDataModel();
-  PageOneState(this.data);
+  SecPageOneState(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class PageOneState extends State<PageOne> {
                     new Container(
                         margin: EdgeInsets.only(top: 10.0, bottom: 30.0),
                         child: new Text(
-                          'Primary Data Page One',
+                          'Secondary Data Page One',
                           textAlign: TextAlign.center,
                           style: new TextStyle(
                               fontSize: 15.0, color: Colors.white),
@@ -151,13 +151,27 @@ class PageOneState extends State<PageOne> {
                         margin: EdgeInsets.all(10.0),
                         child: new RaisedButton(
                           onPressed: () {
+                            data.setSecPageOneData(firstname.text,
+                                lastname.text, email.text, number.text);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PageTwo(data)));
+                          },
+                          color: Colors.white,
+                          child: Text('Previous'),
+                        )),
+                    new Container(
+                        margin: EdgeInsets.all(10.0),
+                        child: new RaisedButton(
+                          onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              data.setPageOneData(firstname.text, lastname.text,
-                                  email.text, number.text);
-                              Navigator.push(
+                              data.setSecPageOneData(firstname.text,
+                                  lastname.text, email.text, number.text);
+                              /* Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => PageTwo(data)));
+                                  builder: (context) => PageTwo(data))); */
                             }
                           },
                           color: Colors.white,

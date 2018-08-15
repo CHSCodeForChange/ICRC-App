@@ -1,13 +1,21 @@
 class FormDataModel {
   String firstname;
+  String secFirstname;
   String lastname;
+  String secLastname;
   String email;
+  String secEmail;
   String phonenumber;
+  String secPhonenumber;
 
   String city;
+  String secCity;
   String state;
+  String secState;
   String address;
+  String secAddress;
   String zipcode;
+  String secZipcode;
 
   bool signed;
 
@@ -27,6 +35,22 @@ class FormDataModel {
     this.zipcode = zipcode;
   }
 
+  void setSecPageOneData(
+      String firstname, String lastname, String email, String phonenumber) {
+    this.secFirstname = firstname;
+    this.secLastname = lastname;
+    this.secEmail = email;
+    this.secPhonenumber = phonenumber;
+  }
+
+  void setSecPageTwoData(
+      String city, String state, String address, String zipcode) {
+    this.secCity = city;
+    this.secState = state;
+    this.secAddress = address;
+    this.secZipcode = zipcode;
+  }
+
   Map<String, dynamic> toJson() => {
         'first_name': firstname,
         'last_name': lastname,
@@ -36,5 +60,12 @@ class FormDataModel {
         'city': city,
         'state': state,
         'zip_code': zipcode,
+        'secondary_first_name': secFirstname,
+        'secondary_last_name': secLastname,
+        'secondary_email': secEmail,
+        'secondary_phone_number': secPhonenumber,
+        'secondary_city': secCity,
+        'secondary_state': secState,
+        'secondary_zip_code': secZipcode,
       };
 }

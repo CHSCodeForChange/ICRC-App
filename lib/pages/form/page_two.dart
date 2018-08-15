@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import '../../common/verify.dart';
 import '../../models/form_data.dart';
 import './page_one.dart';
+import './sec_page_one.dart';
 
 class PageTwo extends StatefulWidget {
   FormDataModel data;
@@ -49,7 +50,7 @@ class PageTwoState extends State<PageTwo> {
                     new Container(
                         margin: EdgeInsets.only(top: 10.0, bottom: 30.0),
                         child: new Text(
-                          'Page Two of Who Cares',
+                          'Primary Data Page Two',
                           textAlign: TextAlign.center,
                           style: new TextStyle(
                               fontSize: 15.0, color: Colors.white),
@@ -159,6 +160,10 @@ class PageTwoState extends State<PageTwo> {
                             if (_formKey.currentState.validate()) {
                               data.setPageTwoData(city.text, state.text,
                                   address.text, zipcode.text);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SecPageOne(data)));
                             }
                           },
                           color: Colors.white,

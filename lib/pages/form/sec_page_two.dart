@@ -3,37 +3,31 @@ import 'package:flutter/widgets.dart';
 
 import '../../common/verify.dart';
 import '../../models/form_data.dart';
-import './page_two.dart';
+import './page_one.dart';
+import './sec_page_one.dart';
 
-// Define a Custom Form Widget
-class PageOne extends StatefulWidget {
+class SecPageTwo extends StatefulWidget {
   FormDataModel data;
-  PageOne(this.data);
+  SecPageTwo(this.data);
 
   @override
-  PageOneState createState() => new PageOneState(data);
+  SecPageTwoState createState() => new SecPageTwoState(data);
 }
 
-// Define a corresponding State class. This class will hold the data related to
-// the form.
-class PageOneState extends State<PageOne> {
-  // Create a global key that will uniquely identify the Form widget and allow
-  // us to validate the form
-  //
-  // Note: This is a `GlobalKey<FormState>`, not a GlobalKey<MyCustomFormState>!
+class SecPageTwoState extends State<SecPageTwo> {
   final _formKey = GlobalKey<FormState>();
 
-  final firstname = TextEditingController();
-  final lastname = TextEditingController();
-  final email = TextEditingController();
-  final number = TextEditingController();
+  final city = TextEditingController();
+  final state = TextEditingController();
+  final address = TextEditingController();
+  final zipcode = TextEditingController();
 
   final double formMarginHoriz = 10.0;
   final double formMarginVert = 5.0;
 
   // constructor
-  FormDataModel data = new FormDataModel();
-  PageOneState(this.data);
+  FormDataModel data;
+  SecPageTwoState(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +50,7 @@ class PageOneState extends State<PageOne> {
                     new Container(
                         margin: EdgeInsets.only(top: 10.0, bottom: 30.0),
                         child: new Text(
-                          'Primary Data Page One',
+                          'Secondary Data Page Two',
                           textAlign: TextAlign.center,
                           style: new TextStyle(
                               fontSize: 15.0, color: Colors.white),
@@ -68,9 +62,9 @@ class PageOneState extends State<PageOne> {
                             left: formMarginHoriz,
                             right: formMarginHoriz),
                         child: new TextFormField(
-                          controller: firstname,
+                          controller: city,
                           decoration: new InputDecoration(
-                            labelText: "First Name",
+                            labelText: "City",
                             fillColor: Colors.white,
                             errorStyle: TextStyle(color: Colors.white),
                             filled: true,
@@ -88,9 +82,31 @@ class PageOneState extends State<PageOne> {
                             left: formMarginHoriz,
                             right: formMarginHoriz),
                         child: new TextFormField(
-                          controller: lastname,
+                          controller: state,
                           decoration: new InputDecoration(
-                            labelText: "Last Name",
+                            labelText: "State",
+                            fillColor: Colors.white,
+                            errorStyle: TextStyle(color: Colors.white),
+                            filled: true,
+                          ),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return "Enter some text";
+                            } else if (!isUSState(value)) {
+                              return "Enter a two-letter state abbreviation";
+                            }
+                          },
+                        )),
+                    new Container(
+                        margin: EdgeInsets.only(
+                            top: formMarginVert,
+                            bottom: formMarginVert,
+                            left: formMarginHoriz,
+                            right: formMarginHoriz),
+                        child: new TextFormField(
+                          controller: address,
+                          decoration: new InputDecoration(
+                            labelText: "Address",
                             fillColor: Colors.white,
                             errorStyle: TextStyle(color: Colors.white),
                             filled: true,
@@ -108,31 +124,9 @@ class PageOneState extends State<PageOne> {
                             left: formMarginHoriz,
                             right: formMarginHoriz),
                         child: new TextFormField(
-                          controller: email,
+                          controller: zipcode,
                           decoration: new InputDecoration(
-                            labelText: "Email",
-                            fillColor: Colors.white,
-                            errorStyle: TextStyle(color: Colors.white),
-                            filled: true,
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter some text";
-                            } else if (!isEmail(value)) {
-                              return "Not a valid email";
-                            }
-                          },
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(
-                            top: formMarginVert,
-                            bottom: formMarginVert,
-                            left: formMarginHoriz,
-                            right: formMarginHoriz),
-                        child: new TextFormField(
-                          controller: number,
-                          decoration: new InputDecoration(
-                            labelText: "Phone Number",
+                            labelText: "Zip Code",
                             fillColor: Colors.white,
                             errorStyle: TextStyle(color: Colors.white),
                             filled: true,
@@ -142,8 +136,6 @@ class PageOneState extends State<PageOne> {
                               return "Enter some text";
                             } else if (!isNumeric(value)) {
                               return "Should only contain numbers";
-                            } else if (value.length != 10) {
-                              return "Should be 3 digit area code and 7 digit local number";
                             }
                           },
                         )),
@@ -151,13 +143,23 @@ class PageOneState extends State<PageOne> {
                         margin: EdgeInsets.all(10.0),
                         child: new RaisedButton(
                           onPressed: () {
+                            data.setSecPageTwoData(city.text, state.text,
+                                address.text, zipcode.text);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SecPageOne(data)));
+                          },
+                          color: Colors.white,
+                          child: Text('Previous'),
+                        )),
+                    new Container(
+                        margin: EdgeInsets.all(10.0),
+                        child: new RaisedButton(
+                          onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              data.setPageOneData(firstname.text, lastname.text,
-                                  email.text, number.text);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PageTwo(data)));
+                              data.setSecPageTwoData(city.text, state.text,
+                                  address.text, zipcode.text);
                             }
                           },
                           color: Colors.white,
