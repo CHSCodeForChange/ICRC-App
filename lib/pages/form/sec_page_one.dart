@@ -149,35 +149,40 @@ class SecPageOneState extends State<SecPageOne> {
                           },
                         )),
                     new Container(
-                        margin: EdgeInsets.all(10.0),
-                        child: new RaisedButton(
-                          onPressed: () {
-                            data.setSecPageOneData(firstname.text,
-                                lastname.text, email.text, number.text);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PageTwo(data)));
-                          },
-                          color: Colors.white,
-                          child: Text('Previous'),
-                        )),
-                    new Container(
-                        margin: EdgeInsets.all(10.0),
-                        child: new RaisedButton(
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
+                      margin: EdgeInsets.all(10.0),
+                      child: new ButtonBar(
+                        alignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          new RaisedButton(
+                            onPressed: () {
                               data.setSecPageOneData(firstname.text,
                                   lastname.text, email.text, number.text);
-                               Navigator.push(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                  builder: (context) => SecPageTwo(data)));
-                            }
-                          },
-                          color: Colors.white,
-                          child: Text('Next'),
-                        ))
+                                      builder: (context) => PageTwo(data)));
+                            },
+                            color: Colors.white,
+                            child: Text('Previous'),
+                          ),
+                          new RaisedButton(
+                            onPressed: () {
+                              if (_formKey.currentState.validate()) {
+                                data.setSecPageOneData(firstname.text,
+                                    lastname.text, email.text, number.text);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            SecPageTwo(data)));
+                              }
+                            },
+                            color: Colors.white,
+                            child: Text('Next'),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ))));
   }

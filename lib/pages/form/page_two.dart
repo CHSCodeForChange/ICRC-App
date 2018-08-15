@@ -140,35 +140,40 @@ class PageTwoState extends State<PageTwo> {
                           },
                         )),
                     new Container(
-                        margin: EdgeInsets.all(10.0),
-                        child: new RaisedButton(
-                          onPressed: () {
-                            data.setPageTwoData(city.text, state.text,
-                                address.text, zipcode.text);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PageOne(data)));
-                          },
-                          color: Colors.white,
-                          child: Text('Previous'),
-                        )),
-                    new Container(
-                        margin: EdgeInsets.all(10.0),
-                        child: new RaisedButton(
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
+                      margin: EdgeInsets.all(10.0),
+                      child: new ButtonBar(
+                        alignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          new RaisedButton(
+                            onPressed: () {
                               data.setPageTwoData(city.text, state.text,
                                   address.text, zipcode.text);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SecPageOne(data)));
-                            }
-                          },
-                          color: Colors.white,
-                          child: Text('Next'),
-                        ))
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PageOne(data)));
+                            },
+                            color: Colors.white,
+                            child: Text('Previous'),
+                          ),
+                          new RaisedButton(
+                            onPressed: () {
+                              if (_formKey.currentState.validate()) {
+                                data.setPageTwoData(city.text, state.text,
+                                    address.text, zipcode.text);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            SecPageOne(data)));
+                              }
+                            },
+                            color: Colors.white,
+                            child: Text('Next'),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ))));
   }
