@@ -42,8 +42,12 @@ class FormDataModel {
   String secState;
   String address;
   String secAddress;
-  String zipcode;
-  String secZipcode;
+  int    zipcode;
+  int    secZipcode;
+
+  String offParty;
+  int    offType;
+  
 
   bool signed;
 
@@ -56,7 +60,7 @@ class FormDataModel {
   }
 
   void setPageTwoData(
-      String city, String state, String address, String zipcode) {
+      String city, String state, String address, int zipcode) {
     this.city = city;
     this.state = state;
     this.address = address;
@@ -72,11 +76,15 @@ class FormDataModel {
   }
 
   void setSecPageTwoData(
-      String city, String state, String address, String zipcode) {
+      String city, String state, String address, int zipcode) {
     this.secCity = city;
     this.secState = state;
     this.secAddress = address;
     this.secZipcode = zipcode;
+  }
+
+  void setOffPageOneData() {
+    
   }
 
   Map<String, dynamic> toJson() => {

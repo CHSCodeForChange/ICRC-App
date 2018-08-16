@@ -147,7 +147,7 @@ class SecPageTwoState extends State<SecPageTwo> {
                           new RaisedButton(
                             onPressed: () {
                               data.setSecPageTwoData(city.text, state.text,
-                                  address.text, zipcode.text);
+                                  address.text, int.parse(zipcode.text));
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -160,7 +160,7 @@ class SecPageTwoState extends State<SecPageTwo> {
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
                                 data.setSecPageTwoData(city.text, state.text,
-                                    address.text, zipcode.text);
+                                    address.text, int.parse(zipcode.text));
                                 /* Navigator.push(
                                     context,
                                     MaterialPageRoute(
