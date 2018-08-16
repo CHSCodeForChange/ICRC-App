@@ -1,4 +1,32 @@
 class FormDataModel {
+  Map<String, int> offenderType = {'Business': 1, 'Person': 2};
+  Map<String, int> discType = {
+    'Employment': 1,
+    'Housing': 2,
+    'Accomodation': 3,
+    'Credit': 4,
+    'Education': 5
+  };
+  Map<String, int> discBasis = {
+    'Age': 1,
+    'Ancestry': 2,
+    'Color': 3,
+    'Disability': 4,
+    'Race': 5,
+    'Religion': 6,
+    'Sex': 7,
+    'Familial Status': 8,
+    'National Origin': 9
+  };
+  Map<String, int> discRef = {
+    'Attorney/Lawyer': 1,
+    'Government Agency': 2,
+    'Friend': 3,
+    'Advertisement': 4,
+    'Brochure/Poster': 5,
+    'Internet': 6
+  };
+
   String firstname;
   String secFirstname;
   String lastname;
