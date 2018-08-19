@@ -148,10 +148,7 @@ class SecPageTwoState extends State<SecPageTwo> {
                             onPressed: () {
                               data.setSecPageTwoData(city.text, state.text,
                                   address.text, int.parse(zipcode.text));
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SecPageOne(data)));
+                              Navigator.pop(context);
                             },
                             color: Colors.white,
                             child: Text('Previous'),
