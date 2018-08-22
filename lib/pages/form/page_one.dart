@@ -46,11 +46,14 @@ class PageOneState extends State<PageOne> {
                 child: new Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    new Header('Complaint Form', 'Primary Data Page Two'),
-                    new myTextInput('First Name', firstname, ValidationType.basic),
-                    new myTextInput('Last Name', lastname, ValidationType.basic),
+                    new Header('Complaint Form', 'Primary Data Page One'),
+                    new myTextInput(
+                        'First Name', firstname, ValidationType.basic),
+                    new myTextInput(
+                        'Last Name', lastname, ValidationType.basic),
                     new myTextInput('Email', email, ValidationType.email),
-                    new myTextInput('Phone Number', number, ValidationType.phone),
+                    new myTextInput(
+                        'Phone Number', number, ValidationType.phone),
                     new Container(
                         margin: EdgeInsets.all(10.0),
                         child: new RaisedButton(

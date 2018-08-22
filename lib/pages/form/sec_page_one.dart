@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../common/verify.dart';
 import '../../models/form_data.dart';
 import './page_two.dart';
 import './sec_page_two.dart';
+import '../../common/input.dart';
+import '../../common/header.dart';
 
 // Define a Custom Form Widget
 class SecPageOne extends StatefulWidget {
@@ -46,108 +47,14 @@ class SecPageOneState extends State<SecPageOne> {
                 child: new Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    new Container(
-                        margin: EdgeInsets.only(top: 30.0),
-                        child: new Text(
-                          'Complaint Form',
-                          textAlign: TextAlign.center,
-                          style: new TextStyle(
-                              fontSize: 40.0, color: Colors.white),
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(top: 10.0, bottom: 30.0),
-                        child: new Text(
-                          'Secondary Data Page One',
-                          textAlign: TextAlign.center,
-                          style: new TextStyle(
-                              fontSize: 15.0, color: Colors.white),
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(
-                            top: formMarginVert,
-                            bottom: formMarginVert,
-                            left: formMarginHoriz,
-                            right: formMarginHoriz),
-                        child: new TextFormField(
-                          controller: firstname,
-                          decoration: new InputDecoration(
-                            labelText: "First Name",
-                            fillColor: Colors.white,
-                            errorStyle: TextStyle(color: Colors.white),
-                            filled: true,
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter some text";
-                            }
-                          },
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(
-                            top: formMarginVert,
-                            bottom: formMarginVert,
-                            left: formMarginHoriz,
-                            right: formMarginHoriz),
-                        child: new TextFormField(
-                          controller: lastname,
-                          decoration: new InputDecoration(
-                            labelText: "Last Name",
-                            fillColor: Colors.white,
-                            errorStyle: TextStyle(color: Colors.white),
-                            filled: true,
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter some text";
-                            }
-                          },
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(
-                            top: formMarginVert,
-                            bottom: formMarginVert,
-                            left: formMarginHoriz,
-                            right: formMarginHoriz),
-                        child: new TextFormField(
-                          controller: email,
-                          decoration: new InputDecoration(
-                            labelText: "Email",
-                            fillColor: Colors.white,
-                            errorStyle: TextStyle(color: Colors.white),
-                            filled: true,
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter some text";
-                            } else if (!isEmail(value)) {
-                              return "Not a valid email";
-                            }
-                          },
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(
-                            top: formMarginVert,
-                            bottom: formMarginVert,
-                            left: formMarginHoriz,
-                            right: formMarginHoriz),
-                        child: new TextFormField(
-                          controller: number,
-                          decoration: new InputDecoration(
-                            labelText: "Phone Number",
-                            fillColor: Colors.white,
-                            errorStyle: TextStyle(color: Colors.white),
-                            filled: true,
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter some text";
-                            } else if (!isNumeric(value)) {
-                              return "Should only contain numbers";
-                            } else if (value.length != 10) {
-                              return "Should be 3 digit area code and 7 digit local number";
-                            }
-                          },
-                        )),
+                    new Header('Complaint Form', 'Secondary Data Page One'),
+                    new myTextInput(
+                        'First Name', firstname, ValidationType.basic),
+                    new myTextInput(
+                        'Last Name', lastname, ValidationType.basic),
+                    new myTextInput('Email', email, ValidationType.email),
+                    new myTextInput(
+                        'Phone Number', number, ValidationType.phone),
                     new Container(
                       margin: EdgeInsets.all(10.0),
                       child: new ButtonBar(

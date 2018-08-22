@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../common/verify.dart';
 import '../../models/form_data.dart';
-import './page_one.dart';
 import './sec_page_one.dart';
+import '../../common/input.dart';
+import '../../common/header.dart';
 
 class SecPageTwo extends StatefulWidget {
   FormDataModel data;
@@ -39,106 +39,11 @@ class SecPageTwoState extends State<SecPageTwo> {
                 child: new Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    new Container(
-                        margin: EdgeInsets.only(top: 30.0),
-                        child: new Text(
-                          'Complaint Form',
-                          textAlign: TextAlign.center,
-                          style: new TextStyle(
-                              fontSize: 40.0, color: Colors.white),
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(top: 10.0, bottom: 30.0),
-                        child: new Text(
-                          'Secondary Data Page Two',
-                          textAlign: TextAlign.center,
-                          style: new TextStyle(
-                              fontSize: 15.0, color: Colors.white),
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(
-                            top: formMarginVert,
-                            bottom: formMarginVert,
-                            left: formMarginHoriz,
-                            right: formMarginHoriz),
-                        child: new TextFormField(
-                          controller: city,
-                          decoration: new InputDecoration(
-                            labelText: "City",
-                            fillColor: Colors.white,
-                            errorStyle: TextStyle(color: Colors.white),
-                            filled: true,
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter some text";
-                            }
-                          },
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(
-                            top: formMarginVert,
-                            bottom: formMarginVert,
-                            left: formMarginHoriz,
-                            right: formMarginHoriz),
-                        child: new TextFormField(
-                          controller: state,
-                          decoration: new InputDecoration(
-                            labelText: "State",
-                            fillColor: Colors.white,
-                            errorStyle: TextStyle(color: Colors.white),
-                            filled: true,
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter some text";
-                            } else if (!isUSState(value)) {
-                              return "Enter a two-letter state abbreviation";
-                            }
-                          },
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(
-                            top: formMarginVert,
-                            bottom: formMarginVert,
-                            left: formMarginHoriz,
-                            right: formMarginHoriz),
-                        child: new TextFormField(
-                          controller: address,
-                          decoration: new InputDecoration(
-                            labelText: "Address",
-                            fillColor: Colors.white,
-                            errorStyle: TextStyle(color: Colors.white),
-                            filled: true,
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter some text";
-                            }
-                          },
-                        )),
-                    new Container(
-                        margin: EdgeInsets.only(
-                            top: formMarginVert,
-                            bottom: formMarginVert,
-                            left: formMarginHoriz,
-                            right: formMarginHoriz),
-                        child: new TextFormField(
-                          controller: zipcode,
-                          decoration: new InputDecoration(
-                            labelText: "Zip Code",
-                            fillColor: Colors.white,
-                            errorStyle: TextStyle(color: Colors.white),
-                            filled: true,
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Enter some text";
-                            } else if (!isNumeric(value)) {
-                              return "Should only contain numbers";
-                            }
-                          },
-                        )),
+                    new Header('Complaint Form', 'Secondary Data Page Two'),
+                    new myTextInput('City', city, ValidationType.basic),
+                    new myTextInput('State', state, ValidationType.state),
+                    new myTextInput('Address', address, ValidationType.basic),
+                    new myTextInput('Zipcode', zipcode, ValidationType.zip),
                     new Container(
                       margin: EdgeInsets.all(10.0),
                       child: new ButtonBar(
