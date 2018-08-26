@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../common/verify.dart';
+import '../../common/dropdown.dart';
 import '../../models/form_data.dart';
+import './page_one.dart';
 import './sec_page_one.dart';
-import './off_page_one.dart';
-import '../../common/input.dart';
-import '../../common/header.dart';
 
-class SecPageTwo extends StatefulWidget {
+class OffPageOne extends StatefulWidget {
   FormDataModel data;
-  SecPageTwo(this.data);
+  OffPageOne(this.data);
 
   @override
-  SecPageTwoState createState() => new SecPageTwoState(data);
+  OffPageOneState createState() => new OffPageOneState(data);
 }
 
-class SecPageTwoState extends State<SecPageTwo> {
+class OffPageOneState extends State<OffPageOne> {
   final _formKey = GlobalKey<FormState>();
 
   final city = TextEditingController();
@@ -28,7 +28,7 @@ class SecPageTwoState extends State<SecPageTwo> {
 
   // constructor
   FormDataModel data;
-  SecPageTwoState(this.data);
+  OffPageOneState(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +40,7 @@ class SecPageTwoState extends State<SecPageTwo> {
                 child: new Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    new Header('Complaint Form', 'Secondary Data Page Two'),
-                    new myTextInput('City', city, ValidationType.basic),
-                    new myTextInput('State', state, ValidationType.state),
-                    new myTextInput('Address', address, ValidationType.basic),
-                    new myTextInput('Zipcode', zipcode, ValidationType.zip),
+                    new DropDownFromMap(data.offenderType),
                     new Container(
                       margin: EdgeInsets.all(10.0),
                       child: new ButtonBar(
@@ -52,8 +48,8 @@ class SecPageTwoState extends State<SecPageTwo> {
                         children: <Widget>[
                           new RaisedButton(
                             onPressed: () {
-                              data.setSecPageTwoData(city.text, state.text,
-                                  address.text, int.parse(zipcode.text));
+                              //data.setSecPageTwoData(city.text, state.text,
+                              //    address.text, int.parse(zipcode.text));
                               Navigator.pop(context);
                             },
                             color: Colors.white,
@@ -62,13 +58,13 @@ class SecPageTwoState extends State<SecPageTwo> {
                           new RaisedButton(
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
-                                data.setSecPageTwoData(city.text, state.text,
-                                    address.text, int.parse(zipcode.text));
-                                 Navigator.push(
+                                //data.setSecPageTwoData(city.text, state.text,
+                                //    address.text, int.parse(zipcode.text));
+                                /* Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                        OffPageOne(data)));
+                                        SecPageOne(data))); */
                               }
                             },
                             color: Colors.white,

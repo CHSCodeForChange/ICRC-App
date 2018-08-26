@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import './verify.dart';
 
-enum ValidationType {
-  basic, email, phone, state, zip
-}
+enum ValidationType { basic, email, phone, state, zip }
 
 final double formMarginHoriz = 10.0;
 final double formMarginVert = 5.0;
