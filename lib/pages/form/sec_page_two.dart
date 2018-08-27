@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../models/form_data.dart';
-import './sec_page_one.dart';
-import './off_page_one.dart';
 import '../../common/input.dart';
 import '../../common/header.dart';
+import './off_page_one.dart';
 
 class SecPageTwo extends StatefulWidget {
   FormDataModel data;

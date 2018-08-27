@@ -3,10 +3,9 @@ import 'package:flutter/widgets.dart';
 
 import '../../common/verify.dart';
 import '../../models/form_data.dart';
-import './page_one.dart';
-import './sec_page_one.dart';
 import '../../common/input.dart';
 import '../../common/header.dart';
+import './sec_page_one.dart';
 
 class PageTwo extends StatefulWidget {
   FormDataModel data;
@@ -55,10 +54,7 @@ class PageTwoState extends State<PageTwo> {
                             onPressed: () {
                               data.setPageTwoData(city.text, state.text,
                                   address.text, int.parse(zipcode.text));
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PageOne(data)));
+                              Navigator.pop(context);
                             },
                             color: Colors.white,
                             child: Text('Previous'),

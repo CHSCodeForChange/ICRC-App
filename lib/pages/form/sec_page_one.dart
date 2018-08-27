@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../models/form_data.dart';
-import './page_two.dart';
-import './sec_page_two.dart';
 import '../../common/input.dart';
 import '../../common/header.dart';
+import './sec_page_two.dart';
 
 // Define a Custom Form Widget
 class SecPageOne extends StatefulWidget {
@@ -64,10 +63,7 @@ class SecPageOneState extends State<SecPageOne> {
                             onPressed: () {
                               data.setSecPageOneData(firstname.text,
                                   lastname.text, email.text, number.text);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PageTwo(data)));
+                              Navigator.pop(context);
                             },
                             color: Colors.white,
                             child: Text('Previous'),

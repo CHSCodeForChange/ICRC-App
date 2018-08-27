@@ -4,8 +4,7 @@ import 'package:flutter/widgets.dart';
 import '../../common/verify.dart';
 import '../../common/dropdown.dart';
 import '../../models/form_data.dart';
-import './page_one.dart';
-import './sec_page_one.dart';
+import './sec_page_two.dart';
 
 class OffPageOne extends StatefulWidget {
   FormDataModel data;

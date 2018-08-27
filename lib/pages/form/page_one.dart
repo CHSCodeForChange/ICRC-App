@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../models/form_data.dart';
-import './page_two.dart';
 import '../../common/input.dart';
 import '../../common/header.dart';
+import './page_two.dart';
 
 // Define a Custom Form Widget
 class PageOne extends StatefulWidget {
