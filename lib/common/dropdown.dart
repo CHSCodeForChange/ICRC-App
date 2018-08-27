@@ -16,7 +16,8 @@ class DropDownFromMapState extends State<DropDownFromMap> {
   Map<String, int> kv;
   DropDownFromMapState(this.kv);
 
-  int selectedVal;
+  String selectedVal;
+  int numVal;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +27,17 @@ class DropDownFromMapState extends State<DropDownFromMap> {
             bottom: formMarginVert,
             left: formMarginVert,
             right: formMarginHoriz),
-        child: new DropdownButton<int>(
+        child: new DropdownButton<String>(
           hint: new Text("Select an option"),
           value: selectedVal,
           onChanged: (String newVal) {
             setState(() {
-              selectedVal = kv[newVal];
+              // tricky tricky... ;)
+              numVal = kv[newVal];
+              selectedVal = newVal;
             });
           },
-          items: kv.map((String k, _) {
+          items: kv.keys.map((String k) {
             return new DropdownMenuItem<String>(
               value: k,
               child: new Text(k),
