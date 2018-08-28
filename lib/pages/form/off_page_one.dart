@@ -17,17 +17,17 @@ class OffPageOne extends StatefulWidget {
 class OffPageOneState extends State<OffPageOne> {
   final _formKey = GlobalKey<FormState>();
 
-  final city = TextEditingController();
-  final state = TextEditingController();
-  final address = TextEditingController();
-  final zipcode = TextEditingController();
-
   final double formMarginHoriz = 10.0;
   final double formMarginVert = 5.0;
 
+  DropDownFromMap off_type;
+
   // constructor
   FormDataModel data;
-  OffPageOneState(this.data);
+  OffPageOneState(data) {
+    this.data = data;
+    this.off_type = new DropDownFromMap(data.offenderType);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class OffPageOneState extends State<OffPageOne> {
                 child: new Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    new DropDownFromMap(data.offenderType),
+                    off_type,
                     new Container(
                       margin: EdgeInsets.all(10.0),
                       child: new ButtonBar(
