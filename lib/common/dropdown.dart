@@ -6,15 +6,15 @@ final double formMarginVert = 5.0;
 
 class DropDownFromMap extends StatefulWidget {
   Map<String, int> kv;
-  DropDownFromMap(this.kv);
+  DropDownFromMap(this.kv, this.title);
 
   @override
-  DropDownFromMapState createState() => new DropDownFromMapState(kv);
+  DropDownFromMapState createState() => new DropDownFromMapState(kv, title);
 }
 
 class DropDownFromMapState extends State<DropDownFromMap> {
   Map<String, int> kv;
-  DropDownFromMapState(this.kv);
+  DropDownFromMapState(this.kv, this.title);
 
   String selectedVal;
   int numVal;
@@ -27,22 +27,32 @@ class DropDownFromMapState extends State<DropDownFromMap> {
             bottom: formMarginVert,
             left: formMarginVert,
             right: formMarginHoriz),
-        child: new DropdownButton<String>(
-          hint: new Text("Select an option"),
-          value: selectedVal,
-          onChanged: (String newVal) {
-            setState(() {
-              // tricky tricky... ;)
-              numVal = kv[newVal];
-              selectedVal = newVal;
-            });
-          },
-          items: kv.keys.map((String k) {
-            return new DropdownMenuItem<String>(
-              value: k,
-              child: new Text(k),
-            );
-          }).toList(),
-        ));
+        child: new InputDecorator(
+            decoration: const InputDecoration(
+              labelText: this.title,
+              fillColor: Colors.white,
+              errorStyle: TextStyle(color: Colors.white),
+              filled: true,
+            ),
+            isEmpty: selectedVal == '',
+            child: new DropdownButtonHideUnderline(
+                // why
+                child: new DropdownButton<String>(
+              hint: new Text("Select an option"),
+              value: selectedVal,
+              onChanged: (String newVal) {
+                setState(() {
+                  // tricky tricky... ;)
+                  numVal = kv[newVal];
+                  selectedVal = newVal;
+                });
+              },
+              items: kv.keys.map((String k) {
+                return new DropdownMenuItem<String>(
+                  value: k,
+                  child: new Text(k),
+                );
+              }).toList(),
+            ))));
   }
 }

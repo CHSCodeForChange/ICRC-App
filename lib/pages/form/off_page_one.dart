@@ -26,7 +26,7 @@ class OffPageOneState extends State<OffPageOne> {
   FormDataModel data;
   OffPageOneState(data) {
     this.data = data;
-    this.off_type = new DropDownFromMap(data.offenderType);
+    this.off_type = new DropDownFromMap(data.offenderType, 'Offense Type');
   }
 
   @override

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import './form/page_one.dart';
+import './form/off_page_one.dart';
 import '../models/form_data.dart';
 
 class Home extends StatelessWidget {
@@ -44,7 +45,8 @@ class Home extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PageOne(data)));
+                              //builder: (context) => PageOne(data)));
+                              builder: (context) => OffPageOne(data)));
                     },
                     color: Colors.white,
                     child: new Text('Begin')))
